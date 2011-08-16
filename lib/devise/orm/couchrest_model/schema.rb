@@ -10,6 +10,9 @@ module Devise
         end
 
         def find_for_authentication(conditions)
+          conditions = filter_auth_params(conditions.dup)
+          (case_insensitive_keys || []).each { |k| conditions[k].try(:downcase!) }
+          (strip_whitespace_keys || []).each { |k| conditions[k].try(:strip!) }
           find(:conditions => conditions)
         end
 
