@@ -22,6 +22,7 @@ module Devise
             view :by_authentication_token
             view :by_reset_password_token
             view :by_unlock_token
+            view :by_unconfirmed_email
           end
         end
       end
