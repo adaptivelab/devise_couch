@@ -2,12 +2,6 @@ module Devise
   module Orm
     module CouchrestModel
       module Schema
-        include Devise::Schema
-        # Tell how to apply schema methods.
-        def apply_devise_schema(name, type, options={})
-          return unless Devise.apply_schema
-          property name, type, options
-        end
 
         def find_for_authentication(conditions)
           conditions = filter_auth_params(conditions.dup)
@@ -27,9 +21,9 @@ module Devise
             find_by_key_and_value(:id, id)
           end
         end
-        
+
         private
-        
+
         def find_by_key_and_value(key, value)
           if key == :id
             get(value)

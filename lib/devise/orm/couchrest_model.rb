@@ -11,7 +11,6 @@ module Devise
           extend Schema
           create_authentication_views
           yield
-          return unless Devise.apply_schema
           devise_modules.each { |m| send(m) if respond_to?(m, true) }
         end
 
